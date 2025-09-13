@@ -17,7 +17,7 @@ export default function Card() {
             );
 
             if (singlePrintModel == null) {
-                return <ServerErrorPage message="the element you are looking for couldn't be found - 404" />
+                return <ServerErrorPage error="the element you are looking for couldn't be found - 404" />
             }
             //console.log(singlePrintModel)
             return (
