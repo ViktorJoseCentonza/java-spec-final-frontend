@@ -1,9 +1,8 @@
 import { NavLink } from "react-router-dom"
-import { usePrintModels } from "../contexts/GlobalContext"
-import LoadingUi from "./LoadingUi"
-export default function Shelf() {
-    console.log(usePrintModels)
-    const { printModels } = usePrintModels()
+import ServerErrorPage from "../pages/ServerErrorPage"
+import LoadingUi from "./Loading"
+export default function Shelf({ printModels }) {
+
     const printModelsList = printModels.printModels_data
 
     switch (printModels.state) {

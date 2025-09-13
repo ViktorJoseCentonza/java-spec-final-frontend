@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { usePrintModels } from "../contexts/GlobalContext";
 import ServerErrorPage from "../pages/ServerErrorPage";
-import LoadingUi from "./LoadingUi";
+import LoadingUi from "./Loading";
 
 export default function Card() {
 
