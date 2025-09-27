@@ -12,19 +12,20 @@ export default function Shelf({ printModels }) {
         case 'success':
             console.log(printModelsList)
             return (
+
                 <>
                     <h1 className="ps-5">Current printModels</h1>
-                    <div className="d-flex gap-3 justify-content-center">
+                    <div className="d-flex justify-content-start gap-3 mx-3 flex-wrap">
 
                         {printModelsList.map((singlePrintModel, index) => {
-                            { console.log(singlePrintModel) }
                             return (
-                                <NavLink key={`${singlePrintModel.name}-card-${index}`
+                                <NavLink className="text-reset text-decoration-none" key={`${singlePrintModel.name}-card-${index}`
                                 } to={`/printModels/${singlePrintModel.id}`}>
-                                    <div className="p-2 bg-dark rounded position-relative d-flex flex-column justify-content-between align-items-center" >
-                                        <div className="img-wrap">
-                                            <img className="img-fluid" style={{ height: "280px" }} src={`${singlePrintModel.image_url}`} alt={`${singlePrintModel.name}-img`} />
+                                    <div className="p-2 bg-dark rounded position-relative d-flex flex-column justify-content-between align-items-center" style={{ width: "250px", height: "300px" }} >
+                                        <div>
+                                            <h2 className="overflow-hidden" >{singlePrintModel.name}</h2>
                                         </div>
+                                        <img className="flex-grow-1 object-fit-cover" src={`${singlePrintModel.image_url}`} alt={`${singlePrintModel.name}-img`} />
                                     </div>
                                 </NavLink>
                             )
