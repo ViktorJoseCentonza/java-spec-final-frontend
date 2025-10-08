@@ -1,13 +1,16 @@
 
 import Shelf from "../components/Shelf"
-import { usePrintModels } from "../contexts/GlobalContext"
+import SearchHook from "../hooks/SearchHook"
 export default function Home() {
-
-    const { printModels } = usePrintModels()
 
     return (
         <div>
-            <Shelf printModels={printModels} />
+            <h2 className="ms-5">PLA</h2>
+            <Shelf printModels={SearchHook("PLA")} />
+            <h2 className="ms-5">PETG</h2>
+            <Shelf printModels={SearchHook("PETG")} />
+            <h2 className="ms-5">ASA</h2>
+            <Shelf printModels={SearchHook("ASA")} />
         </div>
     )
 }

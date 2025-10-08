@@ -7,7 +7,7 @@ export default function SearchHook(query) {
     });
 
     useEffect(() => {
-        fetch(`http://localhost:8080/api/search?=${query}`)
+        fetch(`http://localhost:8080/api/printModels/search?query=${query}`)
             .then((res) => res.json())
             .then((data) => {
                 console.log(data)
