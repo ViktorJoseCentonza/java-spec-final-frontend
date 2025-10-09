@@ -39,6 +39,12 @@ export default function SearchResultPage() {
     }, [searchParams])
 
     return (
-        <Shelf printModels={FoundPrintModels} />
+        <>
+            <h1 className="text-center my-4 text-light">
+                Search Results for <span className="text-primary">"{query}"</span>
+            </h1>
+            <Shelf printModels={FoundPrintModels} />
+        </>
+
     )
 }

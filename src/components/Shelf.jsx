@@ -2,6 +2,7 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import ServerErrorPage from "../pages/ServerErrorPage";
 import LoadingUi from "./Loading";
+import Tags from "./Tags.jsx";
 
 export default function Shelf({ printModels }) {
     const printModelsList = printModels.printModels_data || [];
@@ -10,7 +11,7 @@ export default function Shelf({ printModels }) {
     const [currentIndex, setCurrentIndex] = useState(0);
 
     const handleImageError = (e) => {
-        e.currentTarget.src = "/placeholder.jpg";
+        e.currentTarget.src = "/placeholder.png";
     };
 
     const handlePrev = () => {
@@ -42,7 +43,7 @@ export default function Shelf({ printModels }) {
                                     overflow: "hidden",
                                     width: "100%",
                                     position: "relative",
-                                    padding: "1rem 0"
+                                    padding: "1rem 0",
                                 }}
                             >
                                 <div
@@ -64,24 +65,28 @@ export default function Shelf({ printModels }) {
                                                 marginLeft: "6px",
                                             }}
                                         >
-                                            <NavLink
-                                                className="text-reset text-decoration-none"
-                                                to={`/printModels/${model.id}`}
+                                            <div
+                                                className="card bg-dark text-white"
+                                                style={{
+                                                    width: "250px",
+                                                    height: "370px",
+                                                    transition: "transform 0.3s",
+                                                    cursor: "pointer",
+                                                    display: "flex",
+                                                    flexDirection: "column",
+                                                    justifyContent: "space-between",
+                                                }}
+                                                onMouseEnter={(e) => {
+                                                    e.currentTarget.style.transform = "scale(1.05)";
+                                                }}
+                                                onMouseLeave={(e) => {
+                                                    e.currentTarget.style.transform = "scale(1)";
+                                                }}
                                             >
-                                                <div
-                                                    className="card bg-dark text-white"
-                                                    style={{
-                                                        width: "250px",
-                                                        height: "350px",
-                                                        transition: "transform 0.3s",
-                                                        cursor: "pointer",
-                                                    }}
-                                                    onMouseEnter={(e) => {
-                                                        e.currentTarget.style.transform = "scale(1.05)";
-                                                    }}
-                                                    onMouseLeave={(e) => {
-                                                        e.currentTarget.style.transform = "scale(1)";
-                                                    }}
+                                                <NavLink
+                                                    className="text-reset text-decoration-none flex-grow-1"
+                                                    to={`/printModels/${model.id}`}
+                                                    style={{ display: "block" }}
                                                 >
                                                     <img
                                                         src={model.image_url}
@@ -93,21 +98,26 @@ export default function Shelf({ printModels }) {
                                                     <div className="card-body d-flex flex-column justify-content-between">
                                                         <h5 className="card-title text-truncate">{model.name}</h5>
                                                         <p className="card-text text-truncate">{model.description}</p>
-                                                        <div className="d-flex flex-wrap gap-1">
-                                                            {model.tags?.map((tag) => (
-                                                                <span key={tag.id} className="badge bg-secondary">
-                                                                    {tag.name}
-                                                                </span>
-                                                            ))}
-                                                        </div>
                                                     </div>
+                                                </NavLink>
+
+                                                <div
+                                                    className="card-footer bg-transparent border-0 d-flex flex-wrap gap-1 justify-content-start px-3 pb-3"
+                                                    style={{
+                                                        marginTop: "auto",
+                                                        marginBottom: "0.25rem",
+                                                        marginLeft: "0.25rem",
+                                                    }}
+                                                >
+                                                    <Tags tags={model.tags} />
                                                 </div>
-                                            </NavLink>
+                                            </div>
                                         </div>
                                     ))}
                                 </div>
                             </div>
 
+                            {/* Navigation Buttons */}
                             {currentIndex > 0 && (
                                 <button
                                     className="btn btn-dark"
@@ -127,27 +137,28 @@ export default function Shelf({ printModels }) {
                                 </button>
                             )}
 
-                            {printModelsList.length > visibleCards && currentIndex < printModelsList.length - visibleCards && (
-                                <button
-                                    className="btn btn-dark"
-                                    onClick={handleNext}
-                                    style={{
-                                        position: "absolute",
-                                        top: "50%",
-                                        right: "-50px",
-                                        transform: "translateY(-50%)",
-                                        zIndex: 10,
-                                        borderRadius: "50%",
-                                        width: "40px",
-                                        height: "40px",
-                                    }}
-                                >
-                                    ›
-                                </button>
-                            )}
+                            {printModelsList.length > visibleCards &&
+                                currentIndex < printModelsList.length - visibleCards && (
+                                    <button
+                                        className="btn btn-dark"
+                                        onClick={handleNext}
+                                        style={{
+                                            position: "absolute",
+                                            top: "50%",
+                                            right: "-50px",
+                                            transform: "translateY(-50%)",
+                                            zIndex: 10,
+                                            borderRadius: "50%",
+                                            width: "40px",
+                                            height: "40px",
+                                        }}
+                                    >
+                                        ›
+                                    </button>
+                                )}
                         </div>
-
                     </>
+
                 );
             }
 

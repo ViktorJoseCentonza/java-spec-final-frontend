@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { usePrintModels } from "../contexts/GlobalContext";
 import ServerErrorPage from "../pages/ServerErrorPage";
 import LoadingUi from "./Loading";
+import Tags from "./tags";
 
 export default function Card() {
     const { id } = useParams();
@@ -43,25 +44,16 @@ export default function Card() {
                                 borderTopRightRadius: "1rem",
                             }}
                             onError={(e) => {
-                                e.currentTarget.src = "/placeholder.jpg";
+                                e.currentTarget.src = "/placeholder.png";
                             }}
                         />
-                        <div className="card-body">
+                        <div className="card-body ">
                             <h2 className="card-title mb-3">{singlePrintModel.name}</h2>
                             <p className="fs-5">{singlePrintModel.description}</p>
+                            <div className="d-flex gap-1">
+                                <Tags tags={singlePrintModel.tags} />
+                            </div>
 
-                            {singlePrintModel.tags?.length > 0 && (
-                                <div className="d-flex flex-wrap gap-2 mt-3">
-                                    {singlePrintModel.tags.map((tag) => (
-                                        <span
-                                            key={tag.id}
-                                            className="badge bg-secondary"
-                                        >
-                                            {tag.name}
-                                        </span>
-                                    ))}
-                                </div>
-                            )}
                         </div>
                     </div>
                 </div>
