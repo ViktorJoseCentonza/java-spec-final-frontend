@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { usePrintModels } from "../contexts/GlobalContext";
 import ServerErrorPage from "../pages/ServerErrorPage";
 import LoadingUi from "./Loading";
-import Tags from "./tags";
+import Tags from "./Tags";
 
 export default function Card() {
     const { id } = useParams();
