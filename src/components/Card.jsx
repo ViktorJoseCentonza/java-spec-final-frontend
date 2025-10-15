@@ -14,7 +14,16 @@ export default function Card() {
 
     useEffect(() => {
         fetch(`http://localhost:8080/api/printModels/${id}`)
-            .then((res) => res.json())
+            .then((res) => {
+                if (!res.ok) {
+                    setPrintModel({
+                        state: "error",
+                        message: `error type: ${res.status}`
+                    })
+                    throw new Error(`HTTP error ${res.status}`);
+                }
+                return res.json()
+            })
             .then((data) => {
                 setPrintModel({
                     state: "success",
