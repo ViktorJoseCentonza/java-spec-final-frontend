@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function SearchHook(query) {
+export default function useSearch(query) {
 
     const [FoundPrintModels, setFoundPrintModels] = useState({
         state: "loading"
@@ -29,7 +29,7 @@ export default function SearchHook(query) {
                     message: `error type: ${err}`
                 })
             })
-    }, [])
+    }, [query])
 
     return FoundPrintModels
 }

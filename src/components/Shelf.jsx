@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import ServerErrorPage from "../pages/ServerErrorPage";
-import LoadingUi from "./Loading";
+import Loading from "./Loading";
 import Tags from "./Tags.jsx";
 
 export default function Shelf({ printModels }) {
@@ -25,7 +25,7 @@ export default function Shelf({ printModels }) {
 
     switch (printModels.state) {
         case "loading":
-            return <LoadingUi />;
+            return <Loading />;
 
         case "success":
             if (printModelsList.length != 0) {

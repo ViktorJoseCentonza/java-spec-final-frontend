@@ -1,4 +1,4 @@
-export default function LoadingUi() {
+export default function Loading() {
     return (
         <div
             className="position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center bg-white"

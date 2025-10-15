@@ -10,7 +10,6 @@ function Header() {
                 <nav className="d-flex gap-4 text-decoration-none fs-5 fw-bold">
                     <NavLink to="/" >Home</NavLink >
                     <NavLink to="/popular" >Popular</NavLink >
-                    <NavLink to="#" >Our Favourites</NavLink >
                     <SearchBar />
                 </nav>
             </header >

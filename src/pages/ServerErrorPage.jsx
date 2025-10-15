@@ -14,12 +14,11 @@ export default function ServerErrorPage({ error }) {
                             <p className="card-text text-muted">
                                 {error || "An unexpected error occurred. Please try again later."}
                             </p>
-                            <button
+                            <a href="/"
                                 className="btn btn-danger mt-3"
-                                onClick={() => navigate("/")}
                             >
                                 Go to Homepage
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>

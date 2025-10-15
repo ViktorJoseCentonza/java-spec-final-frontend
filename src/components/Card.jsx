@@ -1,21 +1,42 @@
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { usePrintModels } from "../contexts/GlobalContext";
 import ServerErrorPage from "../pages/ServerErrorPage";
-import LoadingUi from "./Loading";
+import Loading from "./Loading";
 import Tags from "./Tags";
 
 export default function Card() {
     const { id } = useParams();
-    const { printModels } = usePrintModels();
 
-    switch (printModels.state) {
+
+    const [printModel, setPrintModel] = useState({
+        state: "loading"
+    })
+
+    useEffect(() => {
+        fetch(`http://localhost:8080/api/printModels/${id}`)
+            .then((res) => res.json())
+            .then((data) => {
+                setPrintModel({
+                    state: "success",
+                    printModel_data: data
+                })
+            })
+            .catch((err) => {
+                setPrintModel({
+                    state: "error",
+                    message: `error type: ${err}`
+                })
+            })
+    }, [])
+
+
+
+    switch (printModel.state) {
         case "loading":
-            return <LoadingUi />;
+            return <Loading />;
 
         case "success":
-            const singlePrintModel = printModels.printModels_data.find(
-                (model) => String(model.id) === String(id)
-            );
+            const singlePrintModel = printModel.printModel_data
 
             if (!singlePrintModel) {
                 return (
@@ -60,7 +81,7 @@ export default function Card() {
             );
 
         case "error":
-            return <ServerErrorPage error={printModels.message} />;
+            return <ServerErrorPage error={printModel.message} />;
 
         default:
             return (
